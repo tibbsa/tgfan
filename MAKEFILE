@@ -1,0 +1,121 @@
+DEBUG=1
+!ifdef DEBUG
+COPT=-N
+ALIB=\bc\lib\alib.lib
+!else
+ALIB=\bc\lib\alibx.lib
+!endif
+Project: $(ALIB) fan.exe
+
+##########################################################################
+.AUTODEPEND
+.SILENT
+.PATH.obj = OBJ
+
+!ifdef DEBUG
+DEBUG=DEBUG
+!endif
+
+CC = bcc -D$(DEBUG) +util.CFG
+TASM = TASM /t /Mx
+TLIB = tlib
+TLINK = tlink
+LIBPATH = I:\BC\LIB
+INCLUDEPATH = I:\BC\INCLUDE;H;I:\source\RESOURCE\SNIP;I:\source\RESOURCE\BBS\SQUISH\H;I:\source\ALIB\H
+
+
+.c.obj:
+  $(CC) -c {$< }
+
+.cpp.obj:
+  $(CC) -c {$< }
+
+.asm.obj:
+   $(TASM) $<
+
+##########################################################################
+FAN_Files = $(ALIB)        obj\fan.obj        obj\data.obj       obj\scandate.obj   \
+            obj\config.obj     obj\telegard.obj   obj\process.obj
+
+# TARGET: FAN.EXE ########################################################
+fan.exe:  util.cfg $(FAN_Files) $(ALIB)
+          $(TLINK) /s /c /L$(LIBPATH) @&&|
+          c0l.obj+
+          obj\fan.obj+
+          obj\data.obj+
+          obj\scandate.obj+
+          obj\config.obj+
+          obj\telegard.obj+
+          obj\process.obj
+          fan.exe
+          map\fan.map
+          $(ALIB)+
+          \bc\lib\bc_dos_l.lib+
+          noehl.lib+
+          cl.lib
+|
+
+##########################################################################
+# SOURCE FILE DEPENDENCIES                                               #
+##########################################################################
+obj\fan.obj: util.cfg src\fan.cpp
+
+obj\data.obj: util.cfg src\data.cpp
+
+obj\scandate.obj: util.cfg src\scandate.cpp
+
+obj\config.obj: util.cfg src\config.cpp
+
+obj\process.obj: util.cfg src\process.cpp
+
+obj\telegard.obj: util.cfg src\telegard.cpp
+
+##########################################################################
+util.cfg: makefile.
+  copy &&|
+-ml
+-Ff=16
+-C
+$(COPT)
+-v
+-d
+-vi
+-y
+-G
+-O
+-Z
+-H=fan.sym
+-w-ret
+-w-nci
+-w-inl
+-wpin
+-wamb
+-wamp
+-Tt
+-Tmx
+-w-par
+-wasm
+-w-eff
+-wcln
+-w-cpt
+-wdef
+-w-dup
+-w-pia
+-wsig
+-wnod
+-w-ill
+-w-sus
+-wstv
+-w-ucp
+-w-use
+-w-ext
+-w-ias
+-w-ibc
+-w-pre
+-w-nst
+-nOBJ
+-I$(INCLUDEPATH)
+-L$(LIBPATH)
+| util.cfg
+
+

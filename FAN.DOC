@@ -1,0 +1,128 @@
+TgFan 1.0 - Telegard File Announce Utility
+Copyright (C) 1998 by Anthony Tibbs
+
+LEGAL NOTES
+===========
+
+MS-DOS, Windows, Windows 95, and Windows NT are trademarks of Microsoft
+Corporation.
+
+OS/2, IBM, and PC-DOS, are trademarks of International Business Machines
+Corporation.
+
+MsgAPI is a trademark of SCI Communications.
+
+"This product uses the JAM(mbp) API -
+ Copyright 1993 Joaquim Homrighausen, Andrew Milner, Mats Birch,
+                 Mats Wallin. ALL RIGHTS RESERVED."
+
+All other trade names are trademarks of their respective owners.
+
+You are free to use TgFan for your own personal use.  Please contact
+the author if you wish to use TgFan in a commercial, educational, or
+organizational environment.
+
+                        NO WARRANTY!
+
+THE AUTHOR OF THIS PROGRAM DISCLAIMS ALL WARRANTIES,  EITHER
+EXPRESSED  OR  IMPLIED,  INCLUDING,  BUT  NOT  LIMITED   TO,
+WARRANTIES OF MERCHANTABILITY AND  FITNESS FOR A  PARTICULAR
+PURPOSE, WITH  REGARD  TO  THE  SOFTWARE,  THE  ACCOMPANYING
+DOCUMENTATION, AND  THE MEDIUM  ON  WHICH THIS  MATERIAL  IS
+PROVIDED.  UNDER NO CIRCUMSTANCES SHALL THE AUTHOR BE LIABLE
+TO  YOU  FOR  ANY  CONSEQUENTIAL,  SPECIAL,  INCIDENTAL,  OR
+INDIRECT DAMAGES, OF ANY KIND, ARISING OUT OF THE USE OF THE
+SOFTWARE, EVEN  IF  THE  AUTHOR HAS  BEEN  NOTIFIED  OF  THE
+POSSIBILITY OF SUCH DAMAGES.
+
+YOUR USE  OF THIS  PROGRAM  CONSTITUTES YOUR  ACCEPTANCE  OF
+THESE TERMS.
+
+=======
+CREDITS
+=======
+
+I would like to thank Ramon van der Winkel, the author of WaterGate, for
+providing me with his .DIF processing and generating system, without charge.
+This has made providing bugfixes a LOT easier, and a lot smaller.
+
+============
+INTRODUCTION
+============
+
+TgFan is a utility for Telegard bulletin boards, which allows the SysOp
+to post new file announcements in their message areas.  To the best of
+my knowledge, there is no such other utility around.
+
+TgFan remembers when it last ran by storing the date in a file named
+TGFAN.LSD.
+
+=========
+UPGRADING
+=========
+
+You should read ADDENDUM.TXT before upgrading to any of the newer versions.
+
+TgFan is updated via .DIF files.  You must apply these .DIF files in the
+proper order (i.e. upgrading from TgFan 1.0 to 1.0p1, 1.0p2, etc.)  You
+do this by unpacking the archive into your TgFan directory and typing:
+
+UNDIF *
+
+You can delete the .DIF files afterwards if the patch is successful.
+
+===================
+SYSTEM REQUIREMENTS
+===================
+
+TgFan is not resource heavy:
+
+   *  MS-DOS, PC-DOS, OS/2, Windows, Windows 95, or Windows NT.
+   *  256k of RAM
+   *  150k of disk space (approx.)
+   *  Telegard 3.09-compatible system
+
+TgFan will probably run on a floppy disk, but I don't know why you'd want
+to do that...
+
+============================
+INSTALLATION / CONFIGURATION
+============================
+
+Simply decompress the distribution archive into a directory of your choice
+and modify FAN.CFG to suit your system.  There are enough comments in there,
+that no explanation in this document should be necassary.
+
+Then run FAN -R to reset the "last scan date".  If you don't do this, you
+will get a very large posting of ALL the files on your system.
+
+=====
+USAGE
+=====
+
+TgFan should be run only ONCE per day.  Although it will normally be OK to
+run it more often, you should make sure it is not run less than 4 hours
+after the last run.  (It may miss some files if you do - this is not a
+TgFan problem, as far as I can see, but something to do with the way that
+Tim Strike calculates date/time, and the way the C++ API calculates them.)
+
+Before you run TgFan, also run TELEGARD -FS to sort the file areas.
+Otherwise, the file listings will be in whatever order they were added to
+the file base.
+
+=====================
+CONTACTING THE AUTHOR
+=====================
+
+If you would like to be added to the TgFan support mailing list (which
+currently consists of only Beta testers), send a message to
+listserv@tibbs.offsbbs.com and place the words, SUBSCRIBE TGFAN in the
+message body.  You should receive a welcome message shortly.
+
+If you have any problems, questions, or comments, you can contact me
+through one of the following methods:
+
+   FIdonet           1:163/585
+   TCN               201:935/603
+   Sysop's Technet   111:1500/202.1
+   E-mail            anthony@tibbs.offsbbs.com

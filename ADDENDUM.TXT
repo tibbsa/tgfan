@@ -1,0 +1,126 @@
+ This file is a verbose listing of just about every operational bug fix
+ made, as well as warnings, new config verbs, and radical code rewrites.
+ This file *MAY* contain stuff that hasn't made it to the docs yet, and is
+ always updated with each new FAN executable.
+
+ This file should always be checked first if you are upgrading versions
+ of FAN. You should also check if you missed any releases along the way,
+ as you may be missing something important! I know it looks painful, but
+ please read the new stuff thoroughly - it may save you some hair (but
+ may not :( ).
+
+ The symbols along the left hand side tell you want kind of a change it is.
+
+   û  Bugfix
+   ?  Bug reported, but not fixed
+   *  Change
+   +  Added feature
+   è  Planned future revision
+   ð  General information
+=============================================================================
+1.00     [---------] - The "First Public Release" Version
+
+   *  Cleaned up the error handling code.  'Cannot open Telegard config'
+      should only be reported once, and not for every file area now.
+
+   *  Last scan time/date is now stored in an external file, TGFAN.LSD.
+      This means that, when upgarding, execution of FAN -R is NOT
+      necassary.
+
+=============================================================================
+0.99.B3  [SEP 8 98 ] - The "New Testers" Version
+
+   ð  This is a simple .DIF upgrade.  Just run UNDIF * over your FAN
+      directory.
+
+   +  Added multi-node locking.  (PLEASE TEST)
+
+   +  You may now specify ranges of areas for the FileArea lines.  This
+      allows systems with many file areas to include them all in one
+      run.  For example, say you currently have:
+
+         FileArea 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
+         FileArea 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39
+         FileArea 40 300 301 302 303 304 305 306 307 308 309 310 528 600
+         FileArea 999
+
+      You can abbreviate this to:
+
+         FileArea 1-40 300-310 528 600 999
+
+=============================================================================
+0.99.B2  [AUG 28 98] - The "Woops!" Version
+
+   ð  This is NOT a .DIF upgrade.
+
+   û  The sample .CFG file provided in B1 wouldn't work with FAN.  Fixed
+      config file parsing bugs.
+
+   û  Documentation:  Changed JAM copyright notice from 'JAM(mbp) API', since
+      I'm using my own JAM code.
+
+   +  Added sample HEADER.TXT and FOOTER.TXT to archive.
+
+   +  Gave Ramon van der Winkel credit for his .DIF system.
+
+=============================================================================
+0.99.B1  [AUG 1 98] - The "Beta Release" Version
+
+   ð  This is the first Beta release.
+
+   *  Removed ADDENDUM.TXT info for versions prior to 0.99A7
+
+   +  Finally wrote up a bit of documentation.
+
+=============================================================================
+0.99.A10 [JULY 21 98] - The "Messages missing" Version
+
+   û  Improved handling of offline files.  They won't even be listed now.
+
+   û  Fixed a few bugs in JAM handling.
+
+   *  "Message written to area %s.." message is now displayed for both
+      Squish and JAM message areas.  Should I remove this altogether?
+
+   +  Added ^APID kludge to top of message.
+
+   +  Added /0 switch.  This should only be used if you need to debug
+      something, as it will cause TgFan to post messages with *every* file on
+      the system.  (Used when debugging here...)
+      
+=============================================================================
+0.99.A9 [JUNE 30 98] - The "Jam Is Here!" Version
+
+   #  Fan's "short name" has been changed to TgFan to avoid the possiblity
+      of a lawsuit from another programmer.  :-)  Please let me know if you
+      see somewhere that I missed when updating the name.
+
+   +  JAM support is here!  Keep in mind that this is my own API (I didn't
+      use the code provided with the dev. kit), and it has not been proven,
+      so there may still be a few unnoticed bugs.  However, it worked with
+      all the tests I did here.
+
+      By default, all message areas are Squish areas.  To make TgFan use
+      a JAM area, add the following line to your MsgArea...End block:
+
+      Format         Jam
+
+      If you want, you can add "Format          Squish" instead, but it
+      is not necassary to do so.
+
+=============================================================================
+0.99.A8 [JUNE 27 98] - The "Times?" Version
+
+   è  FAN's NAME WILL BE CHANGING!  I have to come up with a new "short"
+      name (instead of FAN), as there is already a program out there using
+      that which has been in existence since '95 or '96.  I'm not about
+      to leave myself open for a lawsuit.  Suggestions?  (TGFAN?) 
+
+   -  Removed the "opening file area listing..." log message.
+
+   û  Removed '.' at end of high ascii headers.
+
+   +  Added some debug code to help determine why the program was skipping
+      files.
+
+=============================================================================
